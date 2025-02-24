@@ -5,7 +5,7 @@ import java.util.List;
 
 public class TestCrudAlumno {
     
-    List<Alumno> listaAlumnos = new ArrayList<>();
+    private List<Alumno> listaAlumnos = new ArrayList<>();
     
     public void consultarAlumnos() {
         this.listaAlumnos = this.readsProfesores();
@@ -55,6 +55,10 @@ public class TestCrudAlumno {
         ws.OperacionesCrudAlumno_Service service = new ws.OperacionesCrudAlumno_Service();
         ws.OperacionesCrudAlumno port = service.getOperacionesCrudAlumnoPort();
         return port.updateAlumno(alumno);
+    }
+
+    public List<Alumno> getListaAlumnos() {
+        return listaAlumnos;
     }
     
     

@@ -46,6 +46,7 @@ public class VentanaAlumno extends javax.swing.JInternalFrame {
         btnCancelar = new javax.swing.JButton();
         jSeparator6 = new javax.swing.JToolBar.Separator();
         btnSalir = new javax.swing.JButton();
+        btnConsultar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
@@ -141,6 +142,18 @@ public class VentanaAlumno extends javax.swing.JInternalFrame {
         });
         jToolBar2.add(btnSalir);
 
+        btnConsultar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnConsultar.setText("Consultar");
+        btnConsultar.setFocusable(false);
+        btnConsultar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnConsultar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarActionPerformed(evt);
+            }
+        });
+        jToolBar2.add(btnConsultar);
+
         getContentPane().add(jToolBar2, java.awt.BorderLayout.PAGE_START);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
@@ -186,7 +199,7 @@ public class VentanaAlumno extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(178, Short.MAX_VALUE))
+                .addContainerGap(196, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -272,10 +285,18 @@ public class VentanaAlumno extends javax.swing.JInternalFrame {
         testAlumno.eliminarAlumno(matricula);
     }//GEN-LAST:event_btnEliminarActionPerformed
 
+    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
+        // TODO add your handling code here:
+        DialogoConsultas consultas = new DialogoConsultas(null, true);
+        consultas.setLocationRelativeTo(null);
+        consultas.setVisible(true);
+    }//GEN-LAST:event_btnConsultarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnConsultar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnModificar;
