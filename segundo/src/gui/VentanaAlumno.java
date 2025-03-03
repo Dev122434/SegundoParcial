@@ -5,6 +5,7 @@
  */
 package gui;
 
+import javax.swing.JOptionPane;
 import ws.Alumno;
 import ws.TestCrudAlumno;
 
@@ -21,6 +22,61 @@ public class VentanaAlumno extends javax.swing.JInternalFrame {
      */
     public VentanaAlumno() {
         initComponents();
+        this.controlBotones(true, false, true, false, false, false, true);
+        this.controlFormulario("inicio");
+    }
+
+    public void controlBotones(boolean nuevo, boolean guardar,
+            boolean buscar, boolean modificar,
+            boolean eliminar, boolean cancelar, boolean salir) {
+        this.btnNuevo.setEnabled(nuevo);
+        this.btnGuardar.setEnabled(guardar);
+        this.btnBuscar.setEnabled(buscar);
+        this.btnModificar.setEnabled(modificar);
+        this.btnEliminar.setEnabled(eliminar);
+        this.btnCancelar.setEnabled(cancelar);
+        this.btnSalir.setEnabled(salir);
+    }
+
+    private void controlFormulario(String operacion) {
+        switch (operacion) {
+            case "inicio":
+                this.txtMatricula.setEnabled(false);
+                this.txtNombre.setEnabled(false);
+                this.txtEdad.setEnabled(false);
+                this.txtTelefono.setEnabled(false);
+
+                this.txtMatricula.setText("");
+                this.txtNombre.setText("");
+                this.txtEdad.setText("");
+                this.txtTelefono.setText("");
+                break;
+            case "nuevo":
+                this.txtMatricula.setEnabled(true);
+                this.txtNombre.setEnabled(true);
+                this.txtEdad.setEnabled(true);
+                this.txtTelefono.setEnabled(true);
+                this.txtMatricula.requestFocus();
+                break;
+            case "buscar":
+                this.txtMatricula.setEditable(false);
+                this.txtNombre.setEnabled(true);
+                this.txtEdad.setEnabled(true);
+                this.txtTelefono.setEnabled(true);
+                this.txtNombre.requestFocus();
+                break;
+        }
+    }
+
+    private boolean validarCapturaVacios() {
+        if (this.txtMatricula.getText().trim().length() == 0
+                || this.txtNombre.getText().trim().length() == 0
+                || this.txtEdad.getText().trim().length() == 0
+                || this.txtTelefono.getText().trim().length() == 0) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     /**
@@ -67,6 +123,11 @@ public class VentanaAlumno extends javax.swing.JInternalFrame {
         btnNuevo.setFocusable(false);
         btnNuevo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnNuevo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoActionPerformed(evt);
+            }
+        });
         jToolBar2.add(btnNuevo);
         jToolBar2.add(jSeparator1);
 
@@ -127,6 +188,11 @@ public class VentanaAlumno extends javax.swing.JInternalFrame {
         btnCancelar.setFocusable(false);
         btnCancelar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnCancelar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
         jToolBar2.add(btnCancelar);
         jToolBar2.add(jSeparator6);
 
@@ -238,16 +304,22 @@ public class VentanaAlumno extends javax.swing.JInternalFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
-        String nombre = txtNombre.getText();
-        String matricula = txtMatricula.getText();
-        int edad = Integer.parseInt(txtEdad.getText());
-        String telefono = txtTelefono.getText();
-        Alumno alumno = new Alumno();
-        alumno.setNombre(nombre);
-        alumno.setMatricula(matricula);
-        alumno.setEdad(edad);
-        alumno.setTelefono(telefono);
-        testAlumno.crearAlumno(alumno);
+        if (this.validarCapturaVacios()) {
+            JOptionPane.showMessageDialog(null, "Faltan datos por capturar");
+        } else {
+            String nombre = txtNombre.getText();
+            String matricula = txtMatricula.getText();
+            int edad = Integer.parseInt(txtEdad.getText());
+            String telefono = txtTelefono.getText();
+            Alumno alumno = new Alumno();
+            alumno.setNombre(nombre);
+            alumno.setMatricula(matricula);
+            alumno.setEdad(edad);
+            alumno.setTelefono(telefono);
+            testAlumno.crearAlumno(alumno);
+            this.controlBotones(true, false, true, false, false, false, true);
+            this.controlFormulario("inicio");
+        }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -257,10 +329,21 @@ public class VentanaAlumno extends javax.swing.JInternalFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
-        String matricula = txtMatricula.getText();
+        String matricula = JOptionPane.showInputDialog(null, "Matricula");
         Alumno alumno = new Alumno();
-        alumno.setMatricula(matricula);
-        testAlumno.buscarAlumno(matricula);
+        alumno = testAlumno.buscarAlumno(matricula);
+        if (true) {
+            txtMatricula.setText(alumno.getMatricula());
+            txtNombre.setText(alumno.getNombre());
+            txtEdad.setText(String.valueOf(alumno.getEdad()));
+            txtTelefono.setText(alumno.getTelefono());
+            this.controlBotones(false, false, false, true, true, true, false);
+            this.controlFormulario("buscar");
+        } else {
+            JOptionPane.showMessageDialog(null, "La matricula no existe");
+            this.controlBotones(true, false, true, false, false, false, true);
+            this.controlFormulario("inicio");
+        }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
@@ -291,6 +374,18 @@ public class VentanaAlumno extends javax.swing.JInternalFrame {
         consultas.setLocationRelativeTo(null);
         consultas.setVisible(true);
     }//GEN-LAST:event_btnConsultarActionPerformed
+
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+        // TODO add your handling code here:
+        this.controlBotones(false, true, false, false, false, true, false);
+        this.controlFormulario("nuevo");
+    }//GEN-LAST:event_btnNuevoActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+        this.controlBotones(true, false, true, false, false, false, true);
+        this.controlFormulario("inicio");
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
-    <system systemId="http://10.0.89.252:8080/OperacionesCrud/OperacionesCrud?WSDL" uri="xml-resources/web-service-references/OperacionesCrud/wsdl/10.0.89.252_8080/OperacionesCrud/OperacionesCrud.wsdl"/>
-    <system systemId="http://10.0.89.252:8080/OperacionesCrud/OperacionesCrud?xsd=1" uri="xml-resources/web-service-references/OperacionesCrud/wsdl/10.0.89.252_8080/OperacionesCrud/OperacionesCrud.xsd_1.xsd"/>
-    <system systemId="http://10.0.89.252:8080/OperacionesCrud/OperacionesCrudMaestro?WSDL" uri="xml-resources/web-service-references/OperacionesCrudMaestro/wsdl/10.0.89.252_8080/OperacionesCrud/OperacionesCrudMaestro.wsdl"/>
-    <system systemId="http://10.0.89.252:8080/OperacionesCrud/OperacionesCrudMaestro?xsd=1" uri="xml-resources/web-service-references/OperacionesCrudMaestro/wsdl/10.0.89.252_8080/OperacionesCrud/OperacionesCrudMaestro.xsd_1.xsd"/>
     <system systemId="http://10.0.89.252:8080/LoginWs/LoginWs?WSDL" uri="wsdl/10.0.89.252_8080/LoginWs/LoginWs.wsdl"/>
     <system systemId="http://10.0.89.252:8080/LoginWs/LoginWs?xsd=1" uri="wsdl/10.0.89.252_8080/LoginWs/LoginWs.xsd_1.xsd"/>
     <system systemId="http://10.0.89.252:8080/OperacionesCrudAlumno/OperacionesCrudAlumno?WSDL" uri="wsdl/10.0.89.252_8080/OperacionesCrudAlumno/OperacionesCrudAlumno.wsdl"/>

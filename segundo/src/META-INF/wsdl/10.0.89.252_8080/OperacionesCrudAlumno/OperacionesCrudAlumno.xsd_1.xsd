@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.2-b608 (trunk-7979; 2015-01-21T12:50:19+0000) JAXWS-RI/2.2.11-b150120.1832 JAXWS-API/2.2.12 JAXB-RI/2.2.12-b141219.1637 JAXB-API/2.2.13-b141020.1521 svn-revision#unknown. --><xs:schema xmlns:tns="http://ws/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://ws/">
+
+<xs:element name="createAlumno" type="tns:createAlumno"/>
+
+<xs:element name="createAlumnoResponse" type="tns:createAlumnoResponse"/>
+
+<xs:element name="deleteAlumno" type="tns:deleteAlumno"/>
+
+<xs:element name="deleteAlumnoResponse" type="tns:deleteAlumnoResponse"/>
+
+<xs:element name="readAlumno" type="tns:readAlumno"/>
+
+<xs:element name="readAlumnoResponse" type="tns:readAlumnoResponse"/>
+
+<xs:element name="readsProfesores" type="tns:readsProfesores"/>
+
+<xs:element name="readsProfesoresResponse" type="tns:readsProfesoresResponse"/>
+
+<xs:element name="updateAlumno" type="tns:updateAlumno"/>
+
+<xs:element name="updateAlumnoResponse" type="tns:updateAlumnoResponse"/>
+
+<xs:complexType name="readsProfesores">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="readsProfesoresResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:alumno" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="alumno">
+<xs:sequence>
+<xs:element name="edad" type="xs:int"/>
+<xs:element name="id_alumno" type="xs:int"/>
+<xs:element name="matricula" type="xs:string" minOccurs="0"/>
+<xs:element name="nombre" type="xs:string" minOccurs="0"/>
+<xs:element name="telefono" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="updateAlumno">
+<xs:sequence>
+<xs:element name="alumno" type="tns:alumno" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="updateAlumnoResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="readAlumno">
+<xs:sequence>
+<xs:element name="matricula" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="readAlumnoResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:alumno" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="createAlumno">
+<xs:sequence>
+<xs:element name="alumno" type="tns:alumno" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="createAlumnoResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="deleteAlumno">
+<xs:sequence>
+<xs:element name="matricula" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="deleteAlumnoResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
