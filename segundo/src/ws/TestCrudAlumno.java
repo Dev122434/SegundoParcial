@@ -1,14 +1,11 @@
 package ws;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class TestCrudAlumno {
     
-    private List<Alumno> listaAlumnos = new ArrayList<>();
-    
-    public void consultarAlumnos() {
-        this.listaAlumnos = this.readsProfesores();
+    public List<Alumno> listaMaestros() {
+        return readsProfesores();
     }
     
     public String crearAlumno(Alumno alumno) {
@@ -44,12 +41,7 @@ public class TestCrudAlumno {
         ws.OperacionesCrudAlumno port = service.getOperacionesCrudAlumnoPort();
         return port.readAlumno(matricula);
     }
-
-    private static java.util.List<ws.Alumno> readsProfesores() {
-        ws.OperacionesCrudAlumno_Service service = new ws.OperacionesCrudAlumno_Service();
-        ws.OperacionesCrudAlumno port = service.getOperacionesCrudAlumnoPort();
-        return port.readsProfesores();
-    }
+    
 
     private static String updateAlumno(ws.Alumno alumno) {
         ws.OperacionesCrudAlumno_Service service = new ws.OperacionesCrudAlumno_Service();
@@ -57,8 +49,10 @@ public class TestCrudAlumno {
         return port.updateAlumno(alumno);
     }
 
-    public List<Alumno> getListaAlumnos() {
-        return listaAlumnos;
+    private static java.util.List<ws.Alumno> readsProfesores() {
+        ws.OperacionesCrudAlumno_Service service = new ws.OperacionesCrudAlumno_Service();
+        ws.OperacionesCrudAlumno port = service.getOperacionesCrudAlumnoPort();
+        return port.readsProfesores();
     }
     
     

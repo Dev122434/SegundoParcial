@@ -78,7 +78,7 @@ public class ProfesorBean {
             try {
                 CallableStatement sentencia
                         = ConexionBD.getConexion().
-                                prepareCall("{call catalogos.fn_modificar_profesor(?,?,?,?)}");
+                                prepareCall("{call catalogos.fn_modificar_profesor(?,?,?)}");
                 sentencia.setString(1, this.profesor.getClave());
                 sentencia.setString(2, this.profesor.getNombre());
                 sentencia.setString(3, this.profesor.getTitulo());

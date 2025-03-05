@@ -5,24 +5,33 @@
  */
 package ws;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author 5-12
  */
 public class TestCrudMaestro {
     
+    private List<Profesor> listaProfesores = new ArrayList<>();
+    
+    public void consultarMaestros() {
+        this.listaProfesores = readsProfesores();
+    }
+
     public String crearProfesor(Profesor profesor) {
         return createProfesor(profesor);
     }
-    
+
     public String eliminarProfesor(String clave) {
         return deleteProfesor(clave);
     }
-    
+
     public Profesor buscarProfesor(String clave) {
         return readProfesor(clave);
     }
-    
+
     public String modificarProfesor(Profesor profesor) {
         return updateProfesor(profesor);
     }
@@ -56,6 +65,9 @@ public class TestCrudMaestro {
         ws.OperacionesCrudMaestro port = service.getOperacionesCrudMaestroPort();
         return port.updateProfesor(profesor);
     }
-    
-    
+
+    public List<Profesor> getListaProfesores() {
+        return listaProfesores;
+    }
+
 }

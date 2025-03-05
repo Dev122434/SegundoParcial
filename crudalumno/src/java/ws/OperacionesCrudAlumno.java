@@ -93,7 +93,7 @@ public class OperacionesCrudAlumno {
      * @return 
      */
     @WebMethod(operationName = "readsProfesores")
-    public List<Alumno> readsAlumnos() {
+    public List<Alumno> readsProfesores() {
         AlumnoBean alumnoBean = new AlumnoBean();
         
         if (!alumnoBean.listarAlumnos()) {

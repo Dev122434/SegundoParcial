@@ -327,17 +327,17 @@ public class VentanaAlumno extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         String matricula = JOptionPane.showInputDialog(null, "Matricula");
         Alumno alumno = testAlumno.buscarAlumno(matricula);
-        if (!(alumno.getMatricula().isEmpty() && alumno.getNombre().isEmpty() && alumno.getTelefono().isEmpty() && String.valueOf(alumno.getEdad()).isEmpty() )) {
+        if ((alumno.getMatricula().isEmpty() && alumno.getNombre().isEmpty() && alumno.getTelefono().isEmpty())) {
+            JOptionPane.showMessageDialog(null, "La matricula no existe");
+            this.controlBotones(true, false, true, false, false, false, true);
+            this.controlFormulario("inicio");
+        } else {
             txtMatricula.setText(matricula);
             txtNombre.setText(alumno.getNombre());
             txtEdad.setText(String.valueOf(alumno.getEdad()));
             txtTelefono.setText(alumno.getTelefono());
             this.controlBotones(false, false, false, true, true, true, false);
             this.controlFormulario("buscar");
-        } else {
-            JOptionPane.showMessageDialog(null, "La matricula no existe");
-            this.controlBotones(true, false, true, false, false, false, true);
-            this.controlFormulario("inicio");
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 

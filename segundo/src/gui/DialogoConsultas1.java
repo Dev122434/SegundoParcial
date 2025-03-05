@@ -8,30 +8,41 @@ package gui;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import ws.Alumno;
+import ws.Profesor;
 import ws.TestCrudAlumno;
+import ws.TestCrudMaestro;
 
 /**
  *
  * @author 5-12
  */
-public class DialogoConsultas extends javax.swing.JDialog {
+public class DialogoConsultas1 extends javax.swing.JDialog {
 
     /**
      * Creates new form DialogoConsultas
      */
     DefaultTableModel modelo = new DefaultTableModel();
 
-    public DialogoConsultas(java.awt.Frame parent, boolean modal) {
+    public DialogoConsultas1(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        String ids[] = {"Nombre", "Matricula", "Edad", "Telefono"};
-
-        modelo.setColumnIdentifiers(ids);
-
-        tablaDatos.setModel(modelo);
+        this.llenarDatosTabla();
     }
-
-
+    
+    private void llenarDatosTabla() {
+        TestCrudMaestro testMaestro = new TestCrudMaestro();
+        testMaestro.consultarMaestros();
+        
+        DefaultTableModel modelo = (DefaultTableModel) this.tablaDatos.getModel();
+        int fila = 0;
+        for (Profesor item : testMaestro.getListaProfesores()) {
+            modelo.addRow(new Object[]{"", "", ""});
+            modelo.setValueAt(item.getClave(), fila, 0);
+            modelo.setValueAt(item.getNombre(), fila, 1);
+            modelo.setValueAt(item.getTitulo(), fila, 2);
+            fila++;
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,7 +54,6 @@ public class DialogoConsultas extends javax.swing.JDialog {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaDatos = new javax.swing.JTable();
-        btnGenerar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -52,11 +62,11 @@ public class DialogoConsultas extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Text 1", "Text 2", "Text 3", "Text 4"
+                "Nombre", "Clave", "Titulo"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -68,15 +78,7 @@ public class DialogoConsultas extends javax.swing.JDialog {
             tablaDatos.getColumnModel().getColumn(0).setResizable(false);
             tablaDatos.getColumnModel().getColumn(1).setResizable(false);
             tablaDatos.getColumnModel().getColumn(2).setResizable(false);
-            tablaDatos.getColumnModel().getColumn(3).setResizable(false);
         }
-
-        btnGenerar.setText("Generar");
-        btnGenerar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGenerarActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -84,11 +86,7 @@ public class DialogoConsultas extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnGenerar)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -96,31 +94,14 @@ public class DialogoConsultas extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnGenerar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarActionPerformed
-        // TODO add your handling code here:
-        TestCrudAlumno testAlumno = new TestCrudAlumno();
-        
-        List<Alumno> list = testAlumno.listaMaestros();
-        for (Alumno alumno : list) {
-            String nombre = alumno.getNombre();
-            String matricula = alumno.getMatricula();
-            int edad = alumno.getEdad();
-            String telefono = alumno.getTelefono();
-            modelo.addRow(new Object[]{nombre, matricula, edad, telefono});
-        }
-    }//GEN-LAST:event_btnGenerarActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnGenerar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaDatos;
     // End of variables declaration//GEN-END:variables

@@ -45,7 +45,7 @@ public class VentanaMaestros extends javax.swing.JInternalFrame {
                 this.txtNombre.requestFocus();
                 break;
             case "buscar":
-                this.txtNombre.setEditable(false);
+                this.txtNombre.setEnabled(true);
                 this.txtClave.setEnabled(true);
                 this.txtTitulo.setEnabled(true);
                 this.txtClave.requestFocus();
@@ -298,20 +298,26 @@ public class VentanaMaestros extends javax.swing.JInternalFrame {
         } else {
             JOptionPane.showMessageDialog(null, "La matricula no existe");
             this.controlBotones(true, false, true, false, false, false, true);
-            this.controlFormulario("inicio");
+            this.controlFormulario("inucio");
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:
-        String nombre = txtNombre.getText();
-        String clave = txtClave.getText();
-        String titulo = txtTitulo.getText();
-        Profesor profesor = new Profesor();
-        profesor.setNombre(nombre);
-        profesor.setClave(clave);
-        profesor.setTitulo(titulo);
-        JOptionPane.showMessageDialog(null, testMaestro.modificarProfesor(profesor));
+        this.controlBotones(false, false, false, true, true, true, false);
+        this.controlFormulario("nuevo");
+        if (this.validarCapturaVacios()) {
+            JOptionPane.showMessageDialog(null, "Faltan datos por capturar");
+        } else {
+            String nombre = txtNombre.getText();
+            String clave = txtClave.getText();
+            String titulo = txtTitulo.getText();
+            Profesor profesor = new Profesor();
+            profesor.setNombre(nombre);
+            profesor.setClave(clave);
+            profesor.setTitulo(titulo);
+            JOptionPane.showMessageDialog(null, testMaestro.modificarProfesor(profesor));
+        }
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
@@ -325,9 +331,9 @@ public class VentanaMaestros extends javax.swing.JInternalFrame {
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
         // TODO add your handling code here:
-        DialogoConsultas consultas = new DialogoConsultas(null, true);
-        consultas.setLocationRelativeTo(null);
-        consultas.setVisible(true);
+        DialogoConsultas1 consultas1 = new DialogoConsultas1(null, true);
+        consultas1.setLocationRelativeTo(null);
+        consultas1.setVisible(true);
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
