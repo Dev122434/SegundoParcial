@@ -23,7 +23,7 @@ public class AlumnoBean {
             try {
                 CallableStatement sentencia
                         = ConexionBD.getConexion().
-                                prepareCall("{call catalogos.fn_agregar_alumno(?,?,?, ?)}");
+                                prepareCall("{call catalogos.fn_agregar_alumno(?,?,?,?)}");
                 sentencia.setString(1, this.alumno.getMatricula());
                 sentencia.setString(2, this.alumno.getNombre());
                 sentencia.setInt(3, this.alumno.getEdad());

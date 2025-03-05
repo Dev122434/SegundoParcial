@@ -50,5 +50,22 @@
         <delete dir="${build.generated.dir}/jax-wsCache/OperacionesCrudAlumno"/>
         <delete dir="${build.generated.sources.dir}/jax-ws/ws"/>
     </target>
-    <target name="wsimport-client-generate" depends="wsimport-client-LoginWs, wsimport-client-OperacionesCrudAlumno"/>
+    <target name="wsimport-client-OperacionesCrudMaestro" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/OperacionesCrudMaestro"/>
+        <property name="wsdl-OperacionesCrudMaestro" location="xml-resources/web-service-references/OperacionesCrudMaestro/wsdl/10.0.89.252_8080/OperacionesCrud/OperacionesCrudMaestro.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/OperacionesCrudMaestro" destdir="${build.generated.dir}/jax-wsCache/OperacionesCrudMaestro" wsdl="${wsdl-OperacionesCrudMaestro}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://10.0.89.252:8080/OperacionesCrud/OperacionesCrudMaestro?WSDL" xnocompile="true" xendorsed="true" package="ws">
+            <depends file="${wsdl-OperacionesCrudMaestro}"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/OperacionesCrudMaestro"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/OperacionesCrudMaestro">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-OperacionesCrudMaestro" depends="-init-project">
+        <delete dir="${build.generated.dir}/jax-wsCache/OperacionesCrudMaestro"/>
+        <delete dir="${build.generated.sources.dir}/jax-ws/ws"/>
+    </target>
+    <target name="wsimport-client-generate" depends="wsimport-client-LoginWs, wsimport-client-OperacionesCrudAlumno, wsimport-client-OperacionesCrudMaestro"/>
 </project>

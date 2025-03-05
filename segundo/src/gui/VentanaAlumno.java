@@ -69,14 +69,10 @@ public class VentanaAlumno extends javax.swing.JInternalFrame {
     }
 
     private boolean validarCapturaVacios() {
-        if (this.txtMatricula.getText().trim().length() == 0
-                || this.txtNombre.getText().trim().length() == 0
-                || this.txtEdad.getText().trim().length() == 0
-                || this.txtTelefono.getText().trim().length() == 0) {
-            return false;
-        } else {
-            return true;
-        }
+        return (this.txtNombre.getText().trim().isEmpty()
+                || this.txtMatricula.getText().trim().isEmpty()
+                || this.txtEdad.getText().trim().isEmpty()
+                || this.txtTelefono.getText().trim().isEmpty());
     }
 
     /**
@@ -316,9 +312,9 @@ public class VentanaAlumno extends javax.swing.JInternalFrame {
             alumno.setMatricula(matricula);
             alumno.setEdad(edad);
             alumno.setTelefono(telefono);
-            testAlumno.crearAlumno(alumno);
             this.controlBotones(true, false, true, false, false, false, true);
             this.controlFormulario("inicio");
+            JOptionPane.showMessageDialog(null, testAlumno.crearAlumno(alumno));
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
@@ -330,10 +326,9 @@ public class VentanaAlumno extends javax.swing.JInternalFrame {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
         String matricula = JOptionPane.showInputDialog(null, "Matricula");
-        Alumno alumno = new Alumno();
-        alumno = testAlumno.buscarAlumno(matricula);
-        if (true) {
-            txtMatricula.setText(alumno.getMatricula());
+        Alumno alumno = testAlumno.buscarAlumno(matricula);
+        if (!(alumno.getMatricula().isEmpty() && alumno.getNombre().isEmpty() && alumno.getTelefono().isEmpty() && String.valueOf(alumno.getEdad()).isEmpty() )) {
+            txtMatricula.setText(matricula);
             txtNombre.setText(alumno.getNombre());
             txtEdad.setText(String.valueOf(alumno.getEdad()));
             txtTelefono.setText(alumno.getTelefono());
@@ -357,7 +352,7 @@ public class VentanaAlumno extends javax.swing.JInternalFrame {
         alumno.setMatricula(matricula);
         alumno.setEdad(edad);
         alumno.setTelefono(telefono);
-        testAlumno.modificarAlumno(alumno);
+        JOptionPane.showMessageDialog(null, testAlumno.modificarAlumno(alumno));
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
@@ -365,7 +360,7 @@ public class VentanaAlumno extends javax.swing.JInternalFrame {
         String matricula = txtMatricula.getText();
         Alumno alumno = new Alumno();
         alumno.setMatricula(matricula);
-        testAlumno.eliminarAlumno(matricula);
+        JOptionPane.showMessageDialog(null, testAlumno.eliminarAlumno(matricula));
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed

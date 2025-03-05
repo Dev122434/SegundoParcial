@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.2-b608 (trunk-7979; 2015-01-21T12:50:19+0000) JAXWS-RI/2.2.11-b150120.1832 JAXWS-API/2.2.12 JAXB-RI/2.2.12-b141219.1637 JAXB-API/2.2.13-b141020.1521 svn-revision#unknown. --><xs:schema xmlns:tns="http://ws/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://ws/">
+
+<xs:element name="createProfesor" type="tns:createProfesor"/>
+
+<xs:element name="createProfesorResponse" type="tns:createProfesorResponse"/>
+
+<xs:element name="deleteProfesor" type="tns:deleteProfesor"/>
+
+<xs:element name="deleteProfesorResponse" type="tns:deleteProfesorResponse"/>
+
+<xs:element name="readProfesor" type="tns:readProfesor"/>
+
+<xs:element name="readProfesorResponse" type="tns:readProfesorResponse"/>
+
+<xs:element name="readsProfesores" type="tns:readsProfesores"/>
+
+<xs:element name="readsProfesoresResponse" type="tns:readsProfesoresResponse"/>
+
+<xs:element name="updateProfesor" type="tns:updateProfesor"/>
+
+<xs:element name="updateProfesorResponse" type="tns:updateProfesorResponse"/>
+
+<xs:complexType name="deleteProfesor">
+<xs:sequence>
+<xs:element name="clave" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="deleteProfesorResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="readProfesor">
+<xs:sequence>
+<xs:element name="clave" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="readProfesorResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:profesor" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="profesor">
+<xs:sequence>
+<xs:element name="clave" type="xs:string" minOccurs="0"/>
+<xs:element name="id_profesor" type="xs:int"/>
+<xs:element name="nombre" type="xs:string" minOccurs="0"/>
+<xs:element name="titulo" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="updateProfesor">
+<xs:sequence>
+<xs:element name="profesor" type="tns:profesor" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="updateProfesorResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="readsProfesores">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="readsProfesoresResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:profesor" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="createProfesor">
+<xs:sequence>
+<xs:element name="profesor" type="tns:profesor" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="createProfesorResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

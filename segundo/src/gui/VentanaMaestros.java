@@ -1,21 +1,62 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gui;
 
-/**
- *
- * @author 5-12
- */
+import javax.swing.JOptionPane;
+import ws.Alumno;
+import ws.Profesor;
+import ws.TestCrudMaestro;
+
 public class VentanaMaestros extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form VentanaMaestros
-     */
+    TestCrudMaestro testMaestro = new TestCrudMaestro();
+
     public VentanaMaestros() {
         initComponents();
+        this.controlBotones(true, false, true, false, false, false, true);
+        this.controlFormulario("inicio");
+    }
+
+    public void controlBotones(boolean nuevo, boolean guardar,
+            boolean buscar, boolean modificar,
+            boolean eliminar, boolean cancelar, boolean salir) {
+        this.btnNuevo.setEnabled(nuevo);
+        this.btnGuardar.setEnabled(guardar);
+        this.btnBuscar.setEnabled(buscar);
+        this.btnModificar.setEnabled(modificar);
+        this.btnEliminar.setEnabled(eliminar);
+        this.btnCancelar.setEnabled(cancelar);
+        this.btnSalir.setEnabled(salir);
+    }
+
+    private void controlFormulario(String operacion) {
+        switch (operacion) {
+            case "inicio":
+                this.txtNombre.setEnabled(false);
+                this.txtClave.setEnabled(false);
+                this.txtTitulo.setEnabled(false);
+
+                this.txtNombre.setText("");
+                this.txtClave.setText("");
+                this.txtTitulo.setText("");
+                break;
+            case "nuevo":
+                this.txtNombre.setEnabled(true);
+                this.txtClave.setEnabled(true);
+                this.txtTitulo.setEnabled(true);
+                this.txtNombre.requestFocus();
+                break;
+            case "buscar":
+                this.txtNombre.setEditable(false);
+                this.txtClave.setEnabled(true);
+                this.txtTitulo.setEnabled(true);
+                this.txtClave.requestFocus();
+                break;
+        }
+    }
+
+    private boolean validarCapturaVacios() {
+        return (this.txtNombre.getText().trim().isEmpty()
+                || this.txtClave.getText().trim().isEmpty()
+                || this.txtTitulo.getText().trim().isEmpty());
     }
 
     /**
@@ -27,24 +68,303 @@ public class VentanaMaestros extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setClosable(true);
-        setTitle("Catalogo de maestros");
+        jToolBar2 = new javax.swing.JToolBar();
+        btnNuevo = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JToolBar.Separator();
+        btnGuardar = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JToolBar.Separator();
+        btnBuscar = new javax.swing.JButton();
+        jSeparator3 = new javax.swing.JToolBar.Separator();
+        btnModificar = new javax.swing.JButton();
+        jSeparator4 = new javax.swing.JToolBar.Separator();
+        btnEliminar = new javax.swing.JButton();
+        jSeparator5 = new javax.swing.JToolBar.Separator();
+        btnCancelar = new javax.swing.JButton();
+        jSeparator6 = new javax.swing.JToolBar.Separator();
+        btnSalir = new javax.swing.JButton();
+        btnConsultar = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        txtClave = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        txtNombre = new javax.swing.JTextField();
+        txtTitulo = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+        setClosable(true);
+        setTitle("Catalogo de alumnos");
+
+        jToolBar2.setRollover(true);
+
+        btnNuevo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnNuevo.setText("Nuevo");
+        btnNuevo.setFocusable(false);
+        btnNuevo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnNuevo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoActionPerformed(evt);
+            }
+        });
+        jToolBar2.add(btnNuevo);
+        jToolBar2.add(jSeparator1);
+
+        btnGuardar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnGuardar.setText("Guardar");
+        btnGuardar.setFocusable(false);
+        btnGuardar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnGuardar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
+        jToolBar2.add(btnGuardar);
+        jToolBar2.add(jSeparator2);
+
+        btnBuscar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnBuscar.setText("Buscar");
+        btnBuscar.setFocusable(false);
+        btnBuscar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnBuscar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+        jToolBar2.add(btnBuscar);
+        jToolBar2.add(jSeparator3);
+
+        btnModificar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnModificar.setText("Modificar");
+        btnModificar.setFocusable(false);
+        btnModificar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnModificar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
+        jToolBar2.add(btnModificar);
+        jToolBar2.add(jSeparator4);
+
+        btnEliminar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnEliminar.setText("Eliminar");
+        btnEliminar.setFocusable(false);
+        btnEliminar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnEliminar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+        jToolBar2.add(btnEliminar);
+        jToolBar2.add(jSeparator5);
+
+        btnCancelar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnCancelar.setText("Cancelar");
+        btnCancelar.setFocusable(false);
+        btnCancelar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnCancelar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+        jToolBar2.add(btnCancelar);
+        jToolBar2.add(jSeparator6);
+
+        btnSalir.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnSalir.setText("Salir");
+        btnSalir.setFocusable(false);
+        btnSalir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnSalir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
+        jToolBar2.add(btnSalir);
+
+        btnConsultar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnConsultar.setText("Consultar");
+        btnConsultar.setFocusable(false);
+        btnConsultar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnConsultar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarActionPerformed(evt);
+            }
+        });
+        jToolBar2.add(btnConsultar);
+
+        getContentPane().add(jToolBar2, java.awt.BorderLayout.PAGE_START);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        jLabel1.setText("Clave");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        jLabel2.setText("Nombre");
+
+        txtTitulo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTituloActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        jLabel4.setText("Titulo");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addGap(38, 38, 38)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                                .addComponent(txtClave))
+                            .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel4))
+                .addContainerGap(198, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(122, Short.MAX_VALUE))
         );
+
+        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txtTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTituloActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTituloActionPerformed
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        // TODO add your handling code here:
+        if (this.validarCapturaVacios()) {
+            JOptionPane.showMessageDialog(null, "Faltan datos por capturar");
+        } else {
+            String nombre = txtNombre.getText();
+            String clave = txtClave.getText();
+            String titulo = txtTitulo.getText();
+            Profesor profesor = new Profesor();
+            profesor.setNombre(nombre);
+            profesor.setClave(clave);
+            profesor.setTitulo(titulo);
+            this.controlBotones(true, false, true, false, false, false, true);
+            this.controlFormulario("inicio");
+            JOptionPane.showMessageDialog(null, testMaestro.crearProfesor(profesor));
+        }
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+    }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // TODO add your handling code here:
+        String clave = JOptionPane.showInputDialog(null, "Clave");
+        Profesor profesor = testMaestro.buscarProfesor(clave);
+        if (!(profesor.getClave().isEmpty() && profesor.getNombre().isEmpty() && profesor.getTitulo().isEmpty())) {
+            txtClave.setText(clave);
+            txtNombre.setText(profesor.getNombre());
+            txtTitulo.setText(profesor.getTitulo());
+            this.controlBotones(false, false, false, true, true, true, false);
+            this.controlFormulario("buscar");
+        } else {
+            JOptionPane.showMessageDialog(null, "La matricula no existe");
+            this.controlBotones(true, false, true, false, false, false, true);
+            this.controlFormulario("inicio");
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        // TODO add your handling code here:
+        String nombre = txtNombre.getText();
+        String clave = txtClave.getText();
+        String titulo = txtTitulo.getText();
+        Profesor profesor = new Profesor();
+        profesor.setNombre(nombre);
+        profesor.setClave(clave);
+        profesor.setTitulo(titulo);
+        JOptionPane.showMessageDialog(null, testMaestro.modificarProfesor(profesor));
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        String clave = txtClave.getText();
+        Profesor profesor = new Profesor();
+        profesor.setClave(clave);
+        controlFormulario("inicio");
+        JOptionPane.showMessageDialog(null, testMaestro.eliminarProfesor(clave));
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
+        // TODO add your handling code here:
+        DialogoConsultas consultas = new DialogoConsultas(null, true);
+        consultas.setLocationRelativeTo(null);
+        consultas.setVisible(true);
+    }//GEN-LAST:event_btnConsultarActionPerformed
+
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+        // TODO add your handling code here:
+        this.controlBotones(false, true, false, false, false, true, false);
+        this.controlFormulario("nuevo");
+    }//GEN-LAST:event_btnNuevoActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+        this.controlBotones(true, false, true, false, false, false, true);
+        this.controlFormulario("inicio");
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnConsultar;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnModificar;
+    private javax.swing.JButton btnNuevo;
+    private javax.swing.JButton btnSalir;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JToolBar.Separator jSeparator1;
+    private javax.swing.JToolBar.Separator jSeparator2;
+    private javax.swing.JToolBar.Separator jSeparator3;
+    private javax.swing.JToolBar.Separator jSeparator4;
+    private javax.swing.JToolBar.Separator jSeparator5;
+    private javax.swing.JToolBar.Separator jSeparator6;
+    private javax.swing.JToolBar jToolBar2;
+    private javax.swing.JTextField txtClave;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtTitulo;
     // End of variables declaration//GEN-END:variables
 }
